@@ -124,7 +124,7 @@ export default function SavedCombosModal({ isOpen, onClose, onOpenExport }: Save
                             : 'bg-cream-100 text-forest-400'
                         }`}
                       >
-                        {item ? '✓' : '○'} {item ? item.name : '未选择'}
+                        {item ? '✓' : '○'} {item ? `${item.equipment.name}${item.quantity > 1 ? ` ×${item.quantity}` : ''}` : '未选择'}
                       </div>
                     ))}
                   </div>

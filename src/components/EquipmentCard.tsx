@@ -11,7 +11,7 @@ export default function EquipmentCard({ equipment }: EquipmentCardProps) {
   const removeFromCombo = useStore((s) => s.removeFromCombo);
   const selectedItems = useStore((s) => s.selectedItems);
 
-  const isSelected = selectedItems[equipment.category]?.id === equipment.id;
+  const isSelected = selectedItems[equipment.category]?.equipment.id === equipment.id;
 
   const renderCategorySpec = () => {
     switch (equipment.category) {

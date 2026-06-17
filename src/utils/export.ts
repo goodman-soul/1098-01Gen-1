@@ -23,12 +23,13 @@ export function generateChecklist(combo: Combo): string {
     const label = CATEGORY_LABELS[cat];
 
     if (item) {
-      content += `${icon} 【${label}】\n`;
-      content += `   品牌/型号：${item.brand} ${item.name}\n`;
-      content += `   重量：${item.weight} kg\n`;
-      content += `   价格：¥${item.price}\n`;
-      content += `   评分：${'⭐'.repeat(Math.round(item.rating))} (${item.rating})\n`;
-      content += `   特点：${item.tags.join('、')}\n\n`;
+      const eq = item.equipment;
+      content += `${icon} 【${label}】 × ${item.quantity}\n`;
+      content += `   品牌/型号：${eq.brand} ${eq.name}\n`;
+      content += `   单重：${eq.weight} kg · 总重：${(eq.weight * item.quantity).toFixed(2)} kg\n`;
+      content += `   单价：¥${eq.price} · 总价：¥${(eq.price * item.quantity).toLocaleString()}\n`;
+      content += `   评分：${'⭐'.repeat(Math.round(eq.rating))} (${eq.rating})\n`;
+      content += `   特点：${eq.tags.join('、')}\n\n`;
     } else {
       content += `${icon} 【${label}】 ⚠️ 未选择\n\n`;
     }
@@ -58,14 +59,19 @@ export function generateChecklist(combo: Combo): string {
     tips.push(`⚠️  还有 ${missing} 类装备未选择，请及时补充`);
   }
 
-  const hasStove = combo.items.stove;
+  const hasStove = !!combo.items.stove;
   if (hasStove) {
-    tips.push('🔥 记得携带炉具燃料及打火机/打火石');
+    tips.push(`🔥 记得携带炉具燃料（按 ${combo.items.stove.quantity} 个炉具准备）及打火机/打火石`);
   }
 
-  const hasTent = combo.items.tent;
+  const hasTent = !!combo.items.tent;
   if (hasTent) {
-    tips.push('⛺ 建议提前在家练习帐篷搭建');
+    tips.push(`⛺ ${combo.items.tent.quantity} 顶帐篷，建议提前在家练习搭建`);
+  }
+
+  const sleepingBagQty = combo.items['sleeping-bag']?.quantity || 0;
+  if (sleepingBagQty > 0) {
+    tips.push(`🛏️ 共 ${sleepingBagQty} 个睡袋，请确认每人都有`);
   }
 
   tips.push('🎒 建议准备：头灯、急救包、充电宝、水壶、防晒用品');

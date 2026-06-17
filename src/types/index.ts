@@ -25,11 +25,16 @@ export interface Equipment {
   boilTime?: string;
 }
 
+export interface SelectedEquipment {
+  equipment: Equipment;
+  quantity: number;
+}
+
 export interface Combo {
   id: string;
   name: string;
   createdAt: string;
-  items: Record<Category, Equipment | null>;
+  items: Record<Category, SelectedEquipment | null>;
   totalWeight: number;
   totalPrice: number;
 }
