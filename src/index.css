@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-sans bg-cream-50 text-forest-800 antialiased;
+    background-image: 
+      radial-gradient(circle at 15% 10%, rgba(107, 142, 78, 0.06) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(107, 163, 201, 0.05) 0%, transparent 40%);
+    background-attachment: fixed;
+  }
+  ::selection {
+    @apply bg-forest-500/20 text-forest-700;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-4 py-2.5 bg-forest-500 text-white rounded-xl font-medium
+           hover:bg-forest-600 active:scale-[0.98] transition-all duration-200
+           shadow-card hover:shadow-card-hover disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply px-4 py-2.5 bg-white text-forest-600 border border-forest-200 rounded-xl font-medium
+           hover:bg-cream-100 hover:border-forest-300 active:scale-[0.98] transition-all duration-200;
+  }
+  .btn-ghost {
+    @apply px-3 py-2 text-forest-600 rounded-lg font-medium
+           hover:bg-forest-50 active:scale-[0.98] transition-all duration-200;
+  }
+  .card {
+    @apply bg-white rounded-2xl shadow-card border border-cream-200/60
+           transition-all duration-300;
+  }
+  .card-hover {
+    @apply hover:shadow-card-hover hover:-translate-y-0.5 hover:border-olive-200;
+  }
+  .tag {
+    @apply inline-flex items-center px-2.5 py-1 text-xs font-medium rounded-full
+           bg-cream-100 text-forest-600 border border-cream-200;
+  }
+  .tag-active {
+    @apply bg-forest-500 text-white border-forest-500;
+  }
+  .input-base {
+    @apply w-full px-3.5 py-2.5 bg-white border border-cream-200 rounded-xl
+           text-forest-700 placeholder-forest-300
+           focus:outline-none focus:ring-2 focus:ring-forest-400/30 focus:border-forest-400
+           transition-all duration-200;
+  }
+  .section-title {
+    @apply font-display text-2xl font-semibold text-forest-700;
+  }
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(45, 90, 61, 0.2) transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: rgba(45, 90, 61, 0.2);
+    border-radius: 3px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(45, 90, 61, 0.35);
+  }
+}
